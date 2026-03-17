@@ -1,0 +1,66 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["local"],
+  "provider": {
+    "local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local OpenAI-Compatible",
+      "options": {
+        "baseURL": "${MODEL_BASE_URL}",
+        "apiKey": "${MODEL_API_KEY}"
+      },
+      "models": {
+        "${MODEL_ID}": {
+          "name": "${MODEL_ID}"
+        }
+      }
+    }
+  },
+  "model": "local/${MODEL_ID}",
+  "small_model": "local/${MODEL_ID}",
+  "permission": {
+    "*": "allow",
+    "external_directory": {
+      "/out/**": "allow",
+      "/tmp/**": "allow"
+    }
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "task": {
+          "*": "deny",
+          "code-change-researcher": "allow"
+        }
+      }
+    },
+    "code-change-researcher": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Analyzes release-range code changes and returns a compact summary of the user-relevant findings.",
+      "prompt": "{file:./agents/code-change-researcher.md}",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    }
+  },
+  "tools": {
+    "write": true,
+    "edit": true,
+    "bash": true
+  },
+  "mcp": {
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "enabled": true,
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}"
+      },
+      "timeout": 15000
+    }
+  }
+}
