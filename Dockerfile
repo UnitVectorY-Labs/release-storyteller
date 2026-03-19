@@ -20,11 +20,11 @@ WORKDIR /app
 
 RUN mkdir -p /app/bin /app/config/agents /app/templates /out
 
-COPY opencode.template.json /app/templates/opencode.template.json
-COPY prompt.template.md /app/templates/prompt.template.md
-COPY code-change-researcher.md /app/config/agents/code-change-researcher.md
-COPY docker-entrypoint.sh /app/bin/docker-entrypoint.sh
-COPY checkout-repo.sh /app/bin/checkout-repo.sh
+COPY src/opencode.template.json /app/templates/opencode.template.json
+COPY src/prompt.template.md /app/templates/prompt.template.md
+COPY src/code-change-researcher.md /app/config/agents/code-change-researcher.md
+COPY src/docker-entrypoint.sh /app/bin/docker-entrypoint.sh
+COPY src/checkout-repo.sh /app/bin/checkout-repo.sh
 
 RUN chmod +x /app/bin/docker-entrypoint.sh /app/bin/checkout-repo.sh
 

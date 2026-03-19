@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/docker-build-auto-current.yml
       - Dockerfile
+      - src/**
   schedule:
     - cron: '0 2 * * 6'
   workflow_dispatch:
