@@ -9,6 +9,8 @@ Primary responsibilities:
 - Verify whether the actual code changes match the release notes and commit messages.
 - Do not assume that the pull request information and commit messages are accurate or complete, investigating the code changes directly where appropriate is expected and may often be necessary to craft a complete and accurate story of the release.
 - Surface user-relevant findings, upgrade implications, and any important mismatches or hidden changes.
+- Updates to deployment workflows or project metadata files aren't relevant to user facing features and can be excluded from the report if they are truly not related to the user facing functinoality of the application.
+- Updates to dependencies that address security vulnerabilities in the dependencies should be called out in the report with the context if they relevant to the application.
 
 Working style:
 - Prefer local git analysis in `/app/release-repo`.
