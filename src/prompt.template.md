@@ -37,7 +37,7 @@ Final article requirements for `/out/article.md`:
   - `layout` must be `post`.
   - `title` must be the article title.
   - `date` must match the release date.
-  - `tags` should be included as a placeholder list (e.g. `tags: [placeholder]`). The validation script will automatically replace the tags with the correct tag-safe values derived from `${GITHUB_REPO}` and `${MODEL_NAME}`.
+  - `tags` should be included as a placeholder list (e.g. `tags: [placeholder]`). The validation script will overwrite the tags with the correct tag-safe values derived from `${GITHUB_REPO}` and `${MODEL_NAME}`, so the exact values you provide do not matter.
 - Do not add an H1 heading. The title is supplied by the mandatory front matter.
 - Include a short intro.
   - Include the date the version was released in the introduction.

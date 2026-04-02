@@ -1,4 +1,5 @@
 # Stage 1: Fetch frontmatterkit using ghrelgrab
+# NOTE: Using ghrelgrab-snapshot:dev for initial testing; update to a released version once verified.
 FROM ghcr.io/unitvectory-labs/ghrelgrab-snapshot:dev AS frontmatterkit-fetcher
 WORKDIR /work
 RUN ["/ghrelgrab", "--repo", "UnitVectorY-Labs/frontmatterkit", "--latest", "--file", "frontmatterkit-{version}-{os}-{arch}.tar.gz", "--out", "/work", "--name", "frontmatterkit", "--debug"]

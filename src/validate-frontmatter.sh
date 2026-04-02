@@ -3,6 +3,16 @@ set -euo pipefail
 
 ARTICLE="${1:-/out/article.md}"
 
+if [[ -z "${GITHUB_REPO:-}" ]]; then
+  echo "Error: GITHUB_REPO environment variable is not set" >&2
+  exit 1
+fi
+
+if [[ -z "${MODEL_NAME:-}" ]]; then
+  echo "Error: MODEL_NAME environment variable is not set" >&2
+  exit 1
+fi
+
 if [[ ! -f "$ARTICLE" ]]; then
   echo "Error: Article file not found: $ARTICLE" >&2
   exit 1
