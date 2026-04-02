@@ -8,8 +8,7 @@ RUN ["/ghrelgrab", "--repo", "UnitVectorY-Labs/frontmatterkit", "--latest", "--f
 FROM node:25-bookworm 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV OPENCODE_CONFIG_DIR=/app/config
-ENV HOME=/root
+ENV OPENCODE_CONFIG_DIR=/tmp/opencode
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
@@ -25,7 +24,8 @@ RUN npm install -g opencode-ai
 
 WORKDIR /app
 
-RUN mkdir -p /app/bin /app/config/agents /app/templates /out
+RUN mkdir -p /app/bin /app/config/agents /app/templates \
+    && mkdir -p /out && chmod 1777 /out
 
 COPY --from=frontmatterkit-fetcher /work/frontmatterkit /usr/local/bin/frontmatterkit
 

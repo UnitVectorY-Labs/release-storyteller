@@ -24,7 +24,11 @@ done
 : "${OPENCODE_PRINT_LOGS:=false}"
 : "${OPENCODE_HEARTBEAT_SECONDS:=15}"
 
-mkdir -p /app/config /out
+# Ensure HOME is writable for arbitrary UID (e.g. docker run -u UID:GID)
+: "${HOME:=/tmp/home}"
+mkdir -p "$HOME"
+
+mkdir -p "${OPENCODE_CONFIG_DIR}" /out
 
 render_template() {
   local input="$1"
@@ -35,7 +39,7 @@ render_template() {
 
 export GITHUB_OWNER GITHUB_REPO RELEASE_NAME GITHUB_PAT MODEL_ID MODEL_NAME MODEL_BASE_URL MODEL_API_KEY
 
-render_template /app/templates/opencode.template.json /app/config/opencode.json
+render_template /app/templates/opencode.template.json "${OPENCODE_CONFIG_DIR}/opencode.json"
 render_template /app/templates/prompt.template.md /tmp/prompt.md
 
 log() {
@@ -93,7 +97,7 @@ run_with_heartbeat() {
   return "$status"
 }
 
-log "Rendered OpenCode config to /app/config/opencode.json"
+log "Rendered OpenCode config to ${OPENCODE_CONFIG_DIR}/opencode.json"
 log "Rendered prompt to /tmp/prompt.md"
 
 artifact_tmp="$(mktemp /tmp/opencode-output.XXXXXX)"

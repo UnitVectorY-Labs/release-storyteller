@@ -38,7 +38,7 @@
       "mode": "subagent",
       "hidden": true,
       "description": "Analyzes release-range code changes and returns a compact summary of the user-relevant findings.",
-      "prompt": "{file:./agents/code-change-researcher.md}",
+      "prompt": "{file:/app/config/agents/code-change-researcher.md}",
       "tools": {
         "write": true,
         "edit": true,
