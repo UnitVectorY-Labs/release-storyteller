@@ -13,8 +13,8 @@ Primary responsibilities:
 - Updates to dependencies that address security vulnerabilities in the dependencies should be called out in the report with the context if they relevant to the application.
 
 Working style:
-- Prefer local git analysis in `/app/release-repo`.
-- Start by using `/app/bin/checkout-repo.sh /app/release-repo`, then analyze the release in `/app/release-repo`.
+- Prefer local git analysis in the checkout directory returned by `/app/bin/checkout-repo.sh` (default: `/tmp/release-repo`).
+- Start by using `/app/bin/checkout-repo.sh`, note the returned checkout directory, then analyze the release in that directory.
 - Strongly prefer local git analysis over GitHub MCP for understanding the release code changes.
 - Use GitHub MCP mainly for release metadata, release notes, tags, pull requests, and repository context when that is easier than git.
 - Prefer commands such as `git tag`, `git log <old>..<new> --oneline`, `git diff --stat <old>..<new>`, `git diff --name-only <old>..<new>`, `git diff <old>..<new> -- <path>`, and `git show <tag>:<path>`.

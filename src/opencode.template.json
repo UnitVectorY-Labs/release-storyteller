@@ -22,7 +22,8 @@
     "*": "allow",
     "external_directory": {
       "/out/**": "allow",
-      "/tmp/**": "allow"
+      "/tmp/**": "allow",
+      "${RELEASE_REPO_DIR}/**": "allow"
     }
   },
   "agent": {

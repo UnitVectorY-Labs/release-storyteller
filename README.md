@@ -29,6 +29,9 @@ Optional environment variables:
 - `OPENCODE_LOG_LEVEL` defaults to `INFO`
 - `OPENCODE_PRINT_LOGS` defaults to `false`
 - `OPENCODE_HEARTBEAT_SECONDS` defaults to `15`
+- `RELEASE_REPO_DIR` defaults to `/tmp/release-repo`
+
+The default checkout directory is under `/tmp` so the container can run as a non-root user without needing write access to `/app`.
 
 Example:
 

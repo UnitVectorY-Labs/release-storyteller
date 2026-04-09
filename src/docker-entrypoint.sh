@@ -23,6 +23,7 @@ done
 : "${OPENCODE_LOG_LEVEL:=INFO}"
 : "${OPENCODE_PRINT_LOGS:=false}"
 : "${OPENCODE_HEARTBEAT_SECONDS:=15}"
+: "${RELEASE_REPO_DIR:=/tmp/release-repo}"
 
 # Ensure HOME is writable for arbitrary UID (e.g. docker run -u UID:GID)
 : "${HOME:=/tmp/home}"
@@ -33,11 +34,11 @@ mkdir -p "${OPENCODE_CONFIG_DIR}" /out
 render_template() {
   local input="$1"
   local output="$2"
-  local substitutions='${GITHUB_OWNER} ${GITHUB_REPO} ${RELEASE_NAME} ${GITHUB_PAT} ${MODEL_ID} ${MODEL_NAME} ${MODEL_BASE_URL} ${MODEL_API_KEY}'
+  local substitutions='${GITHUB_OWNER} ${GITHUB_REPO} ${RELEASE_NAME} ${GITHUB_PAT} ${MODEL_ID} ${MODEL_NAME} ${MODEL_BASE_URL} ${MODEL_API_KEY} ${RELEASE_REPO_DIR}'
   envsubst "$substitutions" < "$input" > "$output"
 }
 
-export GITHUB_OWNER GITHUB_REPO RELEASE_NAME GITHUB_PAT MODEL_ID MODEL_NAME MODEL_BASE_URL MODEL_API_KEY
+export GITHUB_OWNER GITHUB_REPO RELEASE_NAME GITHUB_PAT MODEL_ID MODEL_NAME MODEL_BASE_URL MODEL_API_KEY RELEASE_REPO_DIR
 
 render_template /app/templates/opencode.template.json "${OPENCODE_CONFIG_DIR}/opencode.json"
 render_template /app/templates/prompt.template.md /tmp/prompt.md

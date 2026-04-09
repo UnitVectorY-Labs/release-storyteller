@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-dest="${1:-/app/release-repo}"
+dest="${1:-${RELEASE_REPO_DIR:-/tmp/release-repo}}"
 
 if [[ -z "${GITHUB_OWNER:-}" || -z "${GITHUB_REPO:-}" || -z "${GITHUB_PAT:-}" ]]; then
   echo "GITHUB_OWNER, GITHUB_REPO, and GITHUB_PAT must be set" >&2
   exit 1
 fi
+
+mkdir -p "$(dirname "${dest}")"
 
 repo_url="https://x-access-token:${GITHUB_PAT}@github.com/${GITHUB_OWNER}/${GITHUB_REPO}.git"
 public_url="https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}.git"
