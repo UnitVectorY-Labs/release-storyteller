@@ -5,7 +5,7 @@ WORKDIR /work
 RUN ["/ghrelgrab", "--repo", "UnitVectorY-Labs/frontmatterkit", "--latest", "--file", "frontmatterkit-{version}-{os}-{arch}.tar.gz", "--out", "/work", "--name", "frontmatterkit", "--debug"]
 
 # Stage 2: Main image
-FROM node:25-bookworm 
+FROM node:26-bookworm 
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV OPENCODE_CONFIG_DIR=/tmp/opencode
