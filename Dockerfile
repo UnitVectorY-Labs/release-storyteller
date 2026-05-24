@@ -10,6 +10,8 @@ FROM node:26-bookworm
 ENV DEBIAN_FRONTEND=noninteractive
 ENV OPENCODE_CONFIG_DIR=/tmp/opencode
 
+RUN mkdir -p "$OPENCODE_CONFIG_DIR" && chmod 1777 "$OPENCODE_CONFIG_DIR"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     ca-certificates \
