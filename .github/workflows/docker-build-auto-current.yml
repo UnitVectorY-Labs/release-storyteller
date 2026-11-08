@@ -7,8 +7,6 @@ on:
       - .github/workflows/docker-build-auto-current.yml
       - Dockerfile
       - src/**
-  schedule:
-    - cron: '0 2 * * 6'
   workflow_dispatch:
 
 concurrency:
@@ -57,6 +55,8 @@ jobs:
       with:
         context: .
         push: true
+        pull: true
+        no-cache-filters: frontmatterkit-fetcher
         sbom: true
         platforms: linux/${{ matrix.arch }}
         build-args: |
