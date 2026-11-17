@@ -11,6 +11,8 @@ Your job is to research the release thoroughly, draft the article, revise it, an
 
 Required workflow:
 1. Your first step must be to delegate research to the `code-change-researcher` subagent providing it with the release information to research.
+   - Use exactly ONE `code-change-researcher` invocation for the entire run. Never launch more than one subagent at a time, and never issue multiple subagent calls in a single step, even to speed up research. The model backend supports only a small number of concurrent requests, and parallel subagents cause rate-limit ("Too many requests") failures.
+   - Put all of the release research scope into that single delegation, then wait for the subagent to finish before doing anything else.
 2. The `code-change-researcher` will return a file named `/out/release-research.md` containing the research findings. This file will include user-facing changes, new features, and other relevant information about the release.
 3. Using the information in `/out/release-research.md`, draft a user-facing release announcement article in Markdown format.
 4. Review and revise your article before finalizing it verifying the accuracy of all information and ensuring it has a clear and engaging narrative.
@@ -60,6 +62,7 @@ Final article requirements for `/out/article.md`:
 
 Important constraints:
 - Stay grounded in repository facts.
+- Use at most one `code-change-researcher` subagent at a time (exactly one for the whole run). Never launch subagents in parallel.
 - Do not invent features or implementation details.
 - Do not leak secrets, tokens, or authenticated clone URLs into logs or output files.
 - Keep the tone user-facing and narrative, not changelog-like.
