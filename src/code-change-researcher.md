@@ -37,7 +37,6 @@ Deliverable:
   - Any other findings that are relevant to the code changes that would be helpful or necessary to know when writing an article that accurately conveys the scope and significance of the release to users
 
 Constraints:
-- You are the only subagent allowed in this workflow. Do not launch any subagents of your own, and do not delegate any part of your research to another agent. Do all git and source inspection yourself, sequentially.
 - Do not paste large diffs or long code excerpts.
 - Do not turn the output into an engineering deep dive.
 - Do not leak secrets, tokens, or authenticated clone URLs.

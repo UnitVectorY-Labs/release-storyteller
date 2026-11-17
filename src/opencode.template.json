@@ -40,11 +40,6 @@
       "hidden": true,
       "description": "Analyzes release-range code changes and returns a compact summary of the user-relevant findings.",
       "prompt": "{file:/app/config/agents/code-change-researcher.md}",
-      "permission": {
-        "task": {
-          "*": "deny"
-        }
-      },
       "tools": {
         "write": true,
         "edit": true,

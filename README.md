@@ -7,8 +7,6 @@ It uses OpenCode to:
 - delegate code-change analysis to a dedicated subagent
 - write release artifacts into `/out`
 
-The workflow uses exactly one `code-change-researcher` subagent at a time (one delegation per run). Parallel subagents are not allowed: the model backend supports only a small number of concurrent requests, and concurrent sessions trigger rate-limit ("Too many requests") failures. This is enforced via the prompt template and by denying the task tool to the researcher agent.
-
 ## Build
 
 ```bash
