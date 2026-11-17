@@ -59,6 +59,8 @@ Final article requirements for `/out/article.md`:
 - If some facts are unavailable from the retrieved context, do not draw attention to or mention the missing information in the final article. Instead, just write the best article you can with the information you have.
 
 Important constraints:
+- Every subagent must use the same model as you, the orchestrator. Do not select a different model for delegated work.
+- Run at most one subagent at a time. Wait for the active subagent to finish before starting another; additional sequential delegations are allowed. Include these model and concurrency requirements in every delegation so they also apply to any further delegation by a subagent.
 - Stay grounded in repository facts.
 - Do not invent features or implementation details.
 - Do not leak secrets, tokens, or authenticated clone URLs into logs or output files.
